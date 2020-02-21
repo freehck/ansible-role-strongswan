@@ -1,0 +1,52 @@
+strongswan_ipsec_conf_template: "ipsec.conf"
+strongswan_ipsec_conf_dest: /etc/ipsec.conf
+
+strongswan_ipsec_secrets_enabled: true
+strongswan_ipsec_secrets_template: "ipsec.secrets"
+strongswan_ipsec_secrets_dest: /etc/ipsec.secrets
+strongswan_default_ipv4_address: "{{ ansible_default_ipv4.address }}"
+# strongswan_psk: "must be filled manually"
+
+strongswan_config_cachecrls: "yes"
+strongswan_config_uniqueids: "yes"
+strongswan_config_charondebug: ""
+
+strongswan_conn_fill_default: yes
+strongswan_conn_keyingtries: "%forever"
+strongswan_conn_dpddelay: "30s"
+strongswan_conn_dpdtimeout: "120s"
+strongswan_conn_dpdaction: "clear"
+strongswan_conn_left: "{{ ansible_default_ipv4.address }}"
+strongswan_conn_leftsubnet: "{{ ansible_default_ipv4.address }}/32"
+strongswan_conn_leftprotoport: "udp/l2tp"
+strongswan_conn_right: "%any"
+strongswan_conn_rightsubnet: "0.0.0.0/0"
+strongswan_conn_leftauth: "psk"
+strongswan_conn_forceencaps: "yes"
+strongswan_conn_rightauth: "psk"
+strongswan_conn_leftid: "{{ ansible_default_ipv4.address }}"
+strongswan_conn_ikelifetime: "1h"
+strongswan_conn_keylife: "8h"
+strongswan_conn_ike:
+  - "aes128-sha256-curve25519"
+  - "aes128-sha1-modp1536"
+  - "aes128-sha1-modp1024"
+  - "aes128-md5-modp1536"
+  - "aes128-md5-modp1024"
+  - "3des-sha1-modp1536"
+  - "3des-sha1-modp1024"
+  - "3des-md5-modp1536"
+  - "3des-md5-modp1024"
+strongswan_conn_esp:
+  - "aes128-sha1-modp1536"
+  - "aes128-sha1-modp1024"
+  - "aes128-md5-modp1536"
+  - "aes128-md5-modp1024"
+  - "3des-sha1-modp1536"
+  - "3des-sha1-modp1024"
+  - "3des-md5-modp1536"
+  - "3des-md5-modp1024"
+strongswan_conn_auto: "start"
+strongswan_conn_keyexchange: "ike"
+strongswan_conn_type: "tunnel"
+strongswan_conns: []

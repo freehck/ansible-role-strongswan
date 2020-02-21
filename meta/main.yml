@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Alex Chistyakov, Dmitrii Kashin
+  description: install and configure ipsec using strongswan
+  role_name: k8s
+  license: MIT
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - ipsec
+    - strongswan
+    - vpn
+
+dependencies:
+  
+  - role: freehck.pkg_install
+    vars:
+      pkg_install_packages:
+        - strongswan
+        - libstrongswan-extra-plugins

@@ -1,0 +1,19 @@
+---
+
+- name: create {{ strongswan_ipsec_conf_dest }}
+  template:
+    src: "{{ strongswan_ipsec_conf_template }}"
+    dest: "{{ strongswan_ipsec_conf_dest }}"
+    backup: yes
+
+- name: create {{ strongswan_ipsec_secrets_dest }}
+  template:
+    src: "{{ strongswan_ipsec_secrets_template }}"
+    dest: "{{ strongswan_ipsec_secrets_dest }}"
+    mode: 0600
+  when: strongswan_ipsec_secrets_enabled
+
+- name: start strongswan
+  service: name=strongswan state=started enabled=yes
+
+...

@@ -1,0 +1,6 @@
+*~
+**/.vagrant
+**/retry
+tests/*/roles/*
+!**/roles/freehck.strongswan
+**/*.log

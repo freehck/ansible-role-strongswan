@@ -1,0 +1,10 @@
+alice ansible_host=10.1.0.10 def_gw=10.1.0.11
+moon  ansible_host=10.1.0.11 def_gw=192.168.0.22 tunnel_ip=192.168.0.11 forward=1
+sun   ansible_host=10.2.0.11 def_gw=192.168.0.11 tunnel_ip=192.168.0.22 forward=1
+bob   ansible_host=10.2.0.10 def_gw=10.2.0.11
+
+[strongswan]
+alice
+moon
+sun
+bob

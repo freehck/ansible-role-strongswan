@@ -1,0 +1,31 @@
+---
+
+# this playbook is for net2net-psk test
+# https://www.strongswan.org/testing/testresults/ikev1/net2net-psk/index.html
+
+- hosts: strongswan
+  become: true
+  max_fail_percentage: 0
+  serial: 4
+  vars:
+    strongswan_psk: Vie6ek4Duph4auvo2chu1Foophoh7zaI
+    strongswan_conns:
+      net2net:
+        type: tunnel
+        leftid: "@moon"
+        left: "192.168.0.11"
+        leftsubnet: "10.1.0.0/24"
+        rightid: "@sun"
+        right: "192.168.0.22"
+        rightsubnet: "10.2.0.0/24"
+  roles:
+    - role: freehck.strongswan
+    - role: freehck.sysctl
+      sysctl_opt_name: "net.ipv4.ip_forward"
+      sysctl_opt_value: "1"
+      when: forward | default(false)
+  tasks:
+    - name: remove default route and add new one
+      shell: |
+        ip route del default;
+        ip route add default via {{ def_gw }};
